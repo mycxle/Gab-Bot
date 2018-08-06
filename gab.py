@@ -19,6 +19,7 @@ password = os.environ['password']
 browser = None
 for retry in range(5):
     try:
+        #hmmm
         browser = webdriver.Chrome()
         break
     except:
