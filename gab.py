@@ -16,15 +16,8 @@ scrape_url = "https://gab.ai/" + username + "/followers"
 login_url = "https://gab.ai/auth/login"
 username = os.environ['username']
 password = os.environ['password']
-browser = None
-for retry in range(3):
-    try:
-        #hmmm
-        browser = webdriver.Chrome()
-        break
-    except:
-        print("Failed to make webdriver, trying again in 3 seconds..")
-        sleep(3)
+
+browser = webdriver.Chrome()
 
 browser.get(login_url)
 
