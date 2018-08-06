@@ -71,7 +71,7 @@ while True:
                 print("Followed user, now sleeping for: " + str(sleep_time))
                 sleep(sleep_time)
             except Exception as e:
-                print("Error following user: " str(e))
+                print("Error following user: " + str(e))
 
     if followed or scrape_num >= 10:
         print(scraping_text)
