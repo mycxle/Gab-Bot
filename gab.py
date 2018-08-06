@@ -47,17 +47,14 @@ browser.get(scrape_url)
 sleep(15)
 print(browser.title)
 
-error_count = 0
-old_size = 0
+old_index = 0
 index = 0
-while error_count < 3:
-    btns = browser.find_elements_by_css_selector("a.user-list__item__follow")
-    current_size = len(btns)
-    for i in range(index, current_size):
-        b = btns[i]
+while True:
+    btns = browser.find_elements_by_css_selector("a.user-list__item__follow")[index:]
+    index += len(btns)
+    for b in btns:
         if b.text == "Follow":
             b.click()
-            index = i
             sleep_time = random.randint(1, 10)
             print("Followed user, now sleeping for: " + str(sleep_time))
             sleep(sleep_time)
@@ -69,15 +66,10 @@ while error_count < 3:
     htmlElem.send_keys(Keys.END)
     sleep(random.randint(1, 5))
 
-    print("Old size: " + str(old_size) + "\nCurrent size: " + str(current_size) + "\n-------")
+    if index == old_index:
+        break
 
-    if old_size == current_size:
-        error_count += 1
-        print("ENCOUNTERED AN ERROR! SLEEPING FOR 1 MINUTE")
-        sleep(60)
-    else:
-        error_count = 0
-    old_size = current_size
+    old_index = index 
 
 browser.quit()
 
