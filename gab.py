@@ -59,16 +59,14 @@ print("are we logged in: " + browser.title)
 sleep(5)
 
 browser.get(scrape_url)
+print(scraping_text, end="")
 sleep(5)
-print(browser.title)
 
 old_index = 0
 index = 0
 scraping_text = "Scraping new users.."
 scrape_num = 0
 
-sleep(3)
-print(scraping_text, end="")
 while True:
     scrape_num += 1
     print(".", end="")
