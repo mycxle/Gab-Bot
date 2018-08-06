@@ -17,7 +17,7 @@ login_url = "https://gab.ai/auth/login"
 username = os.environ['username']
 password = os.environ['password']
 browser = None
-for retry in range(5):
+for retry in range(3):
     try:
         #hmmm
         browser = webdriver.Chrome()
@@ -28,7 +28,7 @@ for retry in range(5):
 
 browser.get(login_url)
 
-sleep(30)
+sleep(10)
 print("> at login page: " + browser.title)
 
 u = browser.find_element_by_css_selector("input#username")
@@ -38,7 +38,7 @@ p.send_keys(password)
 p.send_keys(Keys.ENTER)
 
 print("> entered credentials and pressed enter: " + browser.title)
-sleep(30)
+sleep(10)
 print("are we logged in: " + browser.title)
 
 browser.get(scrape_url)
