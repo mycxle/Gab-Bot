@@ -4,6 +4,10 @@ from time import sleep
 import random
 import sys
 import os
+from pyvirtualdisplay import Display
+
+display = Display(visible=0, size=(800, 600))
+display.start()
 
 username = sys.argv[1]
 print(username)
@@ -73,3 +77,5 @@ while error_count < 3:
     old_size = current_size
 
 browser.quit()
+
+display.stop()
