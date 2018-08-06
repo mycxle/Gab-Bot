@@ -64,7 +64,7 @@ old_index = 0
 index = 0
 scraping_text = "Scraping new users.."
 scrape_num = 0
-print(scraping)
+print(scraping_text)
 while True:
     scrape_num += 1
     print(".", end="")
