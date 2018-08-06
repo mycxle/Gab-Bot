@@ -9,7 +9,11 @@ sleepy_time = 10
 def s():
     sleep(sleepy_time)
 
-username = sys.argv[1]
+username = None
+try:
+    username = sys.argv[1]
+except:
+    username = os.environ['scrape']
 print(username)
 scrape_url = "https://gab.ai/" + username + "/followers"
 
