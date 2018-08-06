@@ -74,7 +74,7 @@ while True:
     followed = False
     for b in btns:
         if b.text == "Follow":
-            if not followed:
+            if followed is False:
                 print("")
             else:
                 followed = True
@@ -86,7 +86,7 @@ while True:
             except Exception as e:
                 print("Error following user: " + str(e))
 
-    if followed or scrape_num >= 10:
+    if followed is True or scrape_num >= 10:
         print(scraping_text, end="")
         scrape_num = 0
 
