@@ -43,8 +43,9 @@ if not browser:
 
 browser.get(login_url)
 
-sleep(10)
+sleep(3)
 print("> at login page: " + browser.title)
+sleep(3)
 
 u = browser.find_element_by_css_selector("input#username")
 u.send_keys(username)
@@ -53,17 +54,18 @@ p.send_keys(password)
 p.send_keys(Keys.ENTER)
 
 print("> entered credentials and pressed enter: " + browser.title)
-sleep(10)
+sleep(3)
 print("are we logged in: " + browser.title)
 
 browser.get(scrape_url)
-sleep(15)
 print(browser.title)
 
 old_index = 0
 index = 0
 scraping_text = "Scraping new users.."
 scrape_num = 0
+
+sleep(3)
 print(scraping_text, end="")
 while True:
     scrape_num += 1
