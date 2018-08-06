@@ -78,7 +78,6 @@ while True:
         if b.text == "Follow":
             if followed == False:
                 print("")
-            else:
                 followed = True
             try:
                 b.click()
