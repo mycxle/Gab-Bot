@@ -3,19 +3,28 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 import random
 import sys
-import secret
+import os
 
 username = sys.argv[1]
-scrape_url = "http://gab.ai/" + username + "/followers"
+print(username)
+scrape_url = "https://gab.ai/" + username + "/followers"
 
 login_url = "https://gab.ai/auth/login"
-username = secret.username
-password = secret.password
+username = os.environ['username']
+password = os.environ['password']
+browser = None
+for retry in range(5):
+    try:
+        browser = webdriver.Firefox()
+        break
+    except:
+        print("Failed to make webdriver, trying again in 3 seconds..")
+        sleep(3)
 
-browser = webdriver.Firefox()
 browser.get(login_url)
 
-sleep(3)
+sleep(30)
+print("> at login page: " + browser.title)
 
 u = browser.find_element_by_css_selector("input#username")
 u.send_keys(username)
@@ -23,12 +32,13 @@ p = browser.find_element_by_css_selector("input#password")
 p.send_keys(password)
 p.send_keys(Keys.ENTER)
 
-sleep(3)
+print("> entered credentials and pressed enter: " + browser.title)
+sleep(30)
+print("are we logged in: " + browser.title)
 
 browser.get(scrape_url)
-
-notif_cancel = browser.find_element_by_css_selector("button#onesignal-popover-cancel-button")
-notif_cancel.click()
+sleep(15)
+print(browser.title)
 
 error_count = 0
 old_size = 0
@@ -61,3 +71,5 @@ while error_count < 3:
     else:
         error_count = 0
     old_size = current_size
+
+browser.quit()
