@@ -1,1 +1,1 @@
-worker: python gab.py
+worker: python gab.py m
