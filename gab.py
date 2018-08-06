@@ -26,7 +26,20 @@ options.add_argument("--disable-gpu")
 options.add_argument("--no-sandbox")
 options.add_argument('headless')
 options.add_argument('window-size=1200x600')
-browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+
+browser = None
+
+for retry in range(5):
+    try:
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+        break
+    except:
+        print("Failed to make webdriver, trying again in 1 minute..")
+        sleep(60)
+
+if not browser:
+    print("Exiting program. Unable to create webdriver..")
+    exit()
 
 browser.get(login_url)
 
