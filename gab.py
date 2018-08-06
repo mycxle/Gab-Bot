@@ -43,9 +43,9 @@ if not browser:
 
 browser.get(login_url)
 
-sleep(3)
+sleep(5)
 print("> at login page: " + browser.title)
-sleep(3)
+sleep(5)
 
 u = browser.find_element_by_css_selector("input#username")
 u.send_keys(username)
@@ -54,10 +54,12 @@ p.send_keys(password)
 p.send_keys(Keys.ENTER)
 
 print("> entered credentials and pressed enter: " + browser.title)
-sleep(3)
+sleep(5)
 print("are we logged in: " + browser.title)
+sleep(5)
 
 browser.get(scrape_url)
+sleep(5)
 print(browser.title)
 
 old_index = 0
