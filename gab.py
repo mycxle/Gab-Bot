@@ -19,7 +19,7 @@ password = os.environ['password']
 browser = None
 for retry in range(5):
     try:
-        browser = webdriver.Firefox()
+        browser = webdriver.Chrome()
         break
     except:
         print("Failed to make webdriver, trying again in 3 seconds..")
