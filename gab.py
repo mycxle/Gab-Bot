@@ -49,15 +49,33 @@ print(browser.title)
 
 old_index = 0
 index = 0
+scraping_text = "Scraping new users.."
+scrape_num = 0
+print(scraping)
 while True:
+    scrape_num += 1
+    print(".", end="")
     btns = browser.find_elements_by_css_selector("a.user-list__item__follow")[index:]
     index += len(btns)
+
+    followed = False
     for b in btns:
         if b.text == "Follow":
-            b.click()
-            sleep_time = random.randint(1, 10)
-            print("Followed user, now sleeping for: " + str(sleep_time))
-            sleep(sleep_time)
+            if not followed:
+                print("")
+            else:
+                followed = True
+            try:
+                b.click()
+                sleep_time = random.randint(1, 10)
+                print("Followed user, now sleeping for: " + str(sleep_time))
+                sleep(sleep_time)
+            except Exception as e:
+                print("Error following user: " str(e))
+
+    if followed or scrape_num >= 10:
+        print(scraping_text)
+        scrape_num = 0
 
     load_more = browser.find_element_by_css_selector("a.user-list__load span")
     load_more.click()
