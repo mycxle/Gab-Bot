@@ -6,6 +6,11 @@ import sys
 import os
 from pyvirtualdisplay import Display
 
+sleepy_time = 10
+
+def s():
+    sleep(sleepy_time)
+
 display = Display(visible=0, size=(800, 600))
 display.start()
 
@@ -43,9 +48,9 @@ if not browser:
 
 browser.get(login_url)
 
-sleep(5)
+s()
 print("> at login page: " + browser.title)
-sleep(5)
+s()
 
 u = browser.find_element_by_css_selector("input#username")
 u.send_keys(username)
@@ -54,14 +59,14 @@ p.send_keys(password)
 p.send_keys(Keys.ENTER)
 
 print("> entered credentials and pressed enter: " + browser.title)
-sleep(5)
+s()
 print("are we logged in: " + browser.title)
-sleep(5)
+s()
 
 browser.get(scrape_url)
 scraping_text = "Scraping new users.."
 print(scraping_text, end="")
-sleep(5)
+s()
 
 old_index = 0
 index = 0
@@ -82,22 +87,23 @@ while True:
                 followed = True
             try:
                 b.click()
-                sleep_time = random.randint(1, 10)
+                sleep_time = random.randint(int(sleepy_time/2), int(sleepy_time*1.5))
                 print("Followed user, now sleeping for: " + str(sleep_time))
                 sleep(sleep_time)
             except Exception as e:
                 print("Error following user: " + str(e))
 
+    print("followed is: " + str(followed))
     if followed is True or scrape_num >= 10:
         print(scraping_text, end="")
         scrape_num = 0
 
     load_more = browser.find_element_by_css_selector("a.user-list__load span")
     load_more.click()
-    sleep(random.randint(1, 5))
+    s()
     htmlElem = browser.find_element_by_tag_name('body')
     htmlElem.send_keys(Keys.END)
-    sleep(random.randint(1, 5))
+    s()
 
     if index == old_index:
         break
