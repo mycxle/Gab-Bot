@@ -59,12 +59,12 @@ print("are we logged in: " + browser.title)
 sleep(5)
 
 browser.get(scrape_url)
+scraping_text = "Scraping new users.."
 print(scraping_text, end="")
 sleep(5)
 
 old_index = 0
 index = 0
-scraping_text = "Scraping new users.."
 scrape_num = 0
 
 while True:
