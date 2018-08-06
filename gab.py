@@ -64,7 +64,7 @@ old_index = 0
 index = 0
 scraping_text = "Scraping new users.."
 scrape_num = 0
-print(scraping_text)
+print(scraping_text, end="")
 while True:
     scrape_num += 1
     print(".", end="")
@@ -87,7 +87,7 @@ while True:
                 print("Error following user: " + str(e))
 
     if followed or scrape_num >= 10:
-        print(scraping_text)
+        print(scraping_text, end="")
         scrape_num = 0
 
     load_more = browser.find_element_by_css_selector("a.user-list__load span")
