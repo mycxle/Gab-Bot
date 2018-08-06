@@ -4,15 +4,10 @@ from time import sleep
 import random
 import sys
 import os
-from pyvirtualdisplay import Display
 
 sleepy_time = 10
-
 def s():
     sleep(sleepy_time)
-
-display = Display(visible=0, size=(800, 600))
-display.start()
 
 username = sys.argv[1]
 print(username)
@@ -110,5 +105,4 @@ while True:
     old_index = index 
 
 browser.quit()
-
-display.stop()
+print("EOF")
