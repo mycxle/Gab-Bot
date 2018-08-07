@@ -58,7 +58,7 @@ def i():
 browser.get(login_url)
 
 s()
-print("> at login page: " + i())
+print("> at login page: " + browser.title)
 s()
 
 u = browser.find_element_by_css_selector("input#username")
