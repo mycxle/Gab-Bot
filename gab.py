@@ -13,10 +13,6 @@ def s():
 IMGUR_ID = os.environ['IMGUR_ID']
 im = pyimgur.Imgur(IMGUR_ID)
 PATH = os.path.dirname(os.path.realpath(__file__)) +"/pic.png"
-def i():
-    driver.save_screenshot(PATH)
-    uploaded_image = im.upload_image(PATH, title="Uploaded with PyImgur")
-    return str(upload_image.link)
 
 username = None
 try:
@@ -53,6 +49,11 @@ for retry in range(5):
 if not browser:
     print("Exiting program. Unable to create webdriver..")
     exit()
+
+def i():
+    browser.save_screenshot(PATH)
+    uploaded_image = im.upload_image(PATH, title="Uploaded with PyImgur")
+    return str(upload_image.link)
 
 browser.get(login_url)
 
