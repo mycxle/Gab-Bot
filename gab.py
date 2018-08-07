@@ -34,7 +34,7 @@ options.binary_location = chrome_bin
 options.add_argument("--disable-gpu")
 options.add_argument("--no-sandbox")
 options.add_argument('headless')
-options.add_argument('window-size=1920x1080')
+options.add_argument('window-size=1366x768')
 
 browser = None
 
@@ -73,11 +73,6 @@ print("are we logged in: " + browser.title)
 s()
 
 browser.get(scrape_url)
-try:
-    notif_cancel = browser.find_element_by_css_selector("button#onesignal-popover-cancel-button")
-    notif_cancel.click()
-except:
-    print("There was no notification popup")
 scraping_text = "Scraping new users.."
 print(scraping_text, end="")
 s()
@@ -99,7 +94,7 @@ while True:
                 print("")
                 followed = True
             try:
-                b.click()
+                browser.execute_script("arguments[0].click();", b)
                 sleep_time = random.randint(int(sleepy_time/2), int(sleepy_time*1.5))
                 print("Followed user, now sleeping for: " + str(sleep_time))
                 sleep(sleep_time)
