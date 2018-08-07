@@ -12,21 +12,18 @@ def s():
 
 IMGUR_ID = os.environ['IMGUR_ID']
 im = pyimgur.Imgur(IMGUR_ID)
-PATH = os.path.dirname(os.path.realpath(__file__))
-print("PATH: " + PATH)
+PATH = os.path.dirname(os.path.realpath(__file__)) +"/pic.png"
 def i():
+    driver.save_screenshot(PATH)
     uploaded_image = im.upload_image(PATH, title="Uploaded with PyImgur")
-    print(uploaded_image.title)
-    print(uploaded_image.link)
-    print(uploaded_image.size)
-    print(uploaded_image.type)
+    return str(upload_image.link)
 
 username = None
 try:
     username = sys.argv[1]
 except:
     username = os.environ['scrape']
-print(username)
+print("User to scrape: " + username)
 scrape_url = "https://gab.ai/" + username + "/followers"
 
 login_url = "https://gab.ai/auth/login"
@@ -60,7 +57,7 @@ if not browser:
 browser.get(login_url)
 
 s()
-print("> at login page: " + browser.title)
+print("> at login page: " + i())
 s()
 
 u = browser.find_element_by_css_selector("input#username")
