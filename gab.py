@@ -63,6 +63,11 @@ print("are we logged in: " + browser.title)
 s()
 
 browser.get(scrape_url)
+try:
+    notif_cancel = browser.find_element_by_css_selector("button#onesignal-popover-cancel-button")
+    notif_cancel.click()
+except:
+    print("There was no notification popup")
 scraping_text = "Scraping new users.."
 print(scraping_text, end="")
 s()
@@ -91,7 +96,7 @@ while True:
             except Exception as e:
                 print("Error following user: " + str(e))
 
-    if followed == True or scrape_num >= 10:
+    if followed == True or scrape_num >= 3:
         print(scraping_text, end="")
         scrape_num = 0
 
