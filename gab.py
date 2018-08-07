@@ -53,7 +53,7 @@ if not browser:
 def i():
     browser.save_screenshot(PATH)
     uploaded_image = im.upload_image(PATH, title="Uploaded with PyImgur")
-    return str(upload_image.link)
+    return str(uploaded_image.link)
 
 browser.get(login_url)
 
