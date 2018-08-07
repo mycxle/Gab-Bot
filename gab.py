@@ -4,10 +4,22 @@ from time import sleep
 import random
 import sys
 import os
+import pyimgur
 
 sleepy_time = 10
 def s():
     sleep(sleepy_time)
+
+IMGUR_ID = os.environ['IMGUR_ID']
+im = pyimgur.Imgur(IMGUR_ID)
+PATH = os.path.dirname(os.path.realpath(__file__))
+print("PATH: " + PATH)
+def i():
+    uploaded_image = im.upload_image(PATH, title="Uploaded with PyImgur")
+    print(uploaded_image.title)
+    print(uploaded_image.link)
+    print(uploaded_image.size)
+    print(uploaded_image.type)
 
 username = None
 try:
@@ -29,7 +41,7 @@ options.binary_location = chrome_bin
 options.add_argument("--disable-gpu")
 options.add_argument("--no-sandbox")
 options.add_argument('headless')
-options.add_argument('window-size=1200x600')
+options.add_argument('window-size=1920x1080')
 
 browser = None
 
