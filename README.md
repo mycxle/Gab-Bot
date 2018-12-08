@@ -1,3 +1,7 @@
-# Gab Bot
-![Gab](https://upload.wikimedia.org/wikipedia/en/thumb/3/31/Official_Gab_Social_Network_Logo.png/250px-Official_Gab_Social_Network_Logo.png)
-* Follows all followers of a user.
+# ☆ Gab.py
+
+Social Media bot for Gab.ai built with Python and Selenium to automate user tasks and hosted with Heroku
+
+Currently supports: following a user's followers - pass username as command line argument
+<br>
+Check back later for more..
